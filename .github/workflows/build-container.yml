@@ -27,7 +27,7 @@ jobs:
         osg_series: ['3.6']
         repo: ['development', 'testing', 'release']
     steps:
-      - uses: opensciencegrid/build-container-action@v0.4.1
+      - uses: AidenCohen31/build-container-action@v0.4.1
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
@@ -47,7 +47,7 @@ jobs:
           - runtime: singularity
             cvmfs: cvmfsexec
     steps:
-      - uses: opensciencegrid/load-container-action@v0.5.0
+      - uses: AidenCohen31/load-container-action@v0.5.0
         id: load-image
         with:
           osg_series: ${{ matrix.osg_series }}
@@ -81,7 +81,7 @@ jobs:
             username: DOCKER_USERNAME
             password: DOCKER_PASSWORD
     steps:
-      - uses: opensciencegrid/push-container-action@v0.7.1
+      - uses: AidenCohen31/push-container-action@v0.7.1
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
