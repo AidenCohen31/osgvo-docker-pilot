@@ -27,7 +27,7 @@ jobs:
         osg_series: ['3.6']
         repo: ['development', 'testing', 'release']
     steps:
-      - uses: AidenCohen31/build-container-action@v1
+      - uses: AidenCohen31/build-container-action@v2
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
