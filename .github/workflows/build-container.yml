@@ -26,13 +26,14 @@ jobs:
       matrix:
         osg_series: ['3.6']
         repo: ['development', 'testing', 'release']
+        image_name: ['test']
     steps:
       - uses: AidenCohen31/build-container-action@v3
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
           timestamp_tag: ${{ needs.make-date-tag.outputs.dtag }}
-
+          image_name: ${{ matrix.image_name }}
   test:
     runs-on: ubuntu-20.04
     needs: [make-date-tag, build]
