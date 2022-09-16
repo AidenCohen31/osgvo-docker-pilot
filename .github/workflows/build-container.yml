@@ -48,7 +48,7 @@ jobs:
           - runtime: singularity
             cvmfs: cvmfsexec
     steps:
-      - uses: AidenCohen31/load-container-action@v3
+      - uses: AidenCohen31/load-container-action@v4
         id: load-image
         with:
           osg_series: ${{ matrix.osg_series }}
@@ -82,7 +82,7 @@ jobs:
             username: DOCKER_USERNAME
             password: DOCKER_PASSWORD
     steps:
-      - uses: AidenCohen31/push-container-action@v1
+      - uses: AidenCohen31/push-container-action@v2
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
