@@ -20,7 +20,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: [make-date-tag]
     strategy:
       fail-fast: false
       matrix:
@@ -28,11 +27,10 @@ jobs:
         repo: ['development', 'testing', 'release']
         image_name: ['test']
     steps:
-      - uses: AidenCohen31/build-container-action@v7.3
+      - uses: AidenCohen31/build-container-action@v8
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
-          timestamp_tag: ${{ needs.make-date-tag.outputs.dtag }}
           image_name: ${{ matrix.image_name }}
   test:
     runs-on: ubuntu-20.04
@@ -53,7 +51,7 @@ jobs:
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
-          timestamp_tag: ${{ needs.make-date-tag.outputs.dtag }}
+          timestamp_tag: ${{ needs.build.outputs.tags }}
       - name: Run tests
         env:
           CONTAINER_RUNTIME: ${{ matrix.runtime }}
@@ -86,7 +84,7 @@ jobs:
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
-          timestamp_tag: ${{ needs.make-date-tag.outputs.dtag }}
+          timestamp_tag: ${{ needs.build.outputs.tags }}
           registry_url: ${{ matrix.registry.url }}
           registry_user: ${{ secrets[matrix.registry.username] }}
           registry_pass: ${{ secrets[matrix.registry.password] }}
