@@ -28,7 +28,7 @@ jobs:
         repo: ['development', 'testing', 'release']
         image_name: ['test']
     steps:
-      - uses: AidenCohen31/build-container-action@v7.1
+      - uses: AidenCohen31/build-container-action@v7.2
         with:
           osg_series: ${{ matrix.osg_series }}
           repo: ${{ matrix.repo }}
