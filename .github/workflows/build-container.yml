@@ -46,7 +46,7 @@ jobs:
           - runtime: singularity
             cvmfs: cvmfsexec
     steps:
-      - uses: AidenCohen31/load-container-action@v5
+      - uses: AidenCohen31/load-container-action@v6
         id: load-image
         with:
           osg_series: ${{ matrix.osg_series }}
